@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>JQuery Template</title>
+  <link href="https://fonts.googleapis.com/css?family=Aguafina+Script|Bad+Script|Clicker+Script|Dancing+Script|Euphoria+Script|Kaushan+Script|League+Script|Lily+Script+One|Marck+Script|Meie+Script|Nova+Script|Oleo+Script|Oleo+Script+Swash+Caps|Petit+Formal+Script|Pinyon+Script|Rouge+Script|Seaweed+Script"
+    rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  <script>
+    $(function() {
+      var fonts = ["Aguafina Script", "Bad Script", "Clicker Script", "Dancing Script", "Euphoria Script", "Kaushan Script", "League Script", "Lily Script One", "Marck Script", "Meie Script", "Nova Script", "Oleo Script", "Oleo Script Swash Caps", "Petit Formal Script", "Pinyon Script", "Rouge Script", "Seaweed Script"];
+      $("select").blur(function() {
+        var userDecision = $('#decision').val();
+        $("span").html(userDecision + "... ");
+      });
+      $("#button").click(function() {
+        var userColor = $('#colorWheel').val();
+        var userTitle = $('#bannerCertificate').val();
+        var userReceiver = $('#bannerReceiver').val();
+        var userDecision = $('#decision').val();
+        $('#banner').val(userColor).css('background-color', userColor);
+        $('h1').val(userTitle).html(userDecision + userTitle)
+        $('h3').val(userReceiver).html("For " + userReceiver);
+        if ($('#randomize').is(":checked")) {
+          var randomH1Number = Math.floor(Math.random() * 16);
+          var randomH3Number = Math.floor(Math.random() * 16);
+          $('h1').val(userTitle).css('font-family', fonts[randomH1Number]);
+          $('h3').val(userTitle).css('font-family', fonts[randomH3Number]);
+        }
+
+      });
+    });
+  </script>
+  <style>
+    #button {
+      margin: auto;
+      height: 150px;
+      width: 150px;
+      padding: 30px;
+    }
+    
+    #form {
+      margin: auto;
+    }
+    
+    #banner {
+      border: 5px inset black;
+    }
+    
+    #banner h1 {
+      padding: 10px;
+      font-family: 'Kaushan Script', cursive;
+      margin: auto;
+    }
+    
+    h3 {
+      padding-left: 20px;
+      font-family: 'Dancing Script', cursive;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="button">
+    <img src="button.png">
+  </div>
+  <div id="form">
+    <form>
+      What color would you like the background to be?
+      <input type="color" id="colorWheel">
+      <br> Which text do you want?
+      <select name="decision" id="decision">
+      <option value="Certificate for "> Certificate for...</option>
+      <option value="Certificate of "> Certificate of...</option>
+      <option value="Congratulations for "> Congratulations for...</option>
+      <option value="Award for "> Award for...</option>
+    </select>
+      <br><span>Wait for it</span>
+      <input type="text" id="bannerCertificate">
+      <br> Who is receiving this?
+      <input type="text" id="bannerReceiver">
+      <br> Randomize Fonts?
+      <input type="checkbox" id="randomize">
+    </form>
+  </div>
+  <div id="banner">
+    <h1>Title Goes Here</h1>
+    <h3>Name of Person Goes Here</h3>
+  </div>
+</body>
+
+</html>
