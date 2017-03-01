@@ -10,6 +10,7 @@
   <script>
     $(function() {
       var fonts = ["Aguafina Script", "Bad Script", "Clicker Script", "Dancing Script", "Euphoria Script", "Kaushan Script", "League Script", "Lily Script One", "Marck Script", "Meie Script", "Nova Script", "Oleo Script", "Oleo Script Swash Caps", "Petit Formal Script", "Pinyon Script", "Rouge Script", "Seaweed Script"];
+       var widths = [225, 250, 300, 325, 350, 375, 425, 500, 575, 525, 600, 675, 725];
       $("select").blur(function() {
         var userDecision = $('#decision').val();
         $("span").html(userDecision + "... ");
@@ -21,14 +22,18 @@
         var userDecision = $('#decision').val();
         $('#banner').val(userColor).css('background-color', userColor);
         $('h1').val(userTitle).html(userDecision + userTitle)
-        $('h3').val(userReceiver).html("For " + userReceiver);
+        $('h3').val(userReceiver).html("To " + userReceiver);
         if ($('#randomize').is(":checked")) {
           var randomH1Number = Math.floor(Math.random() * 16);
           var randomH3Number = Math.floor(Math.random() * 16);
           $('h1').val(userTitle).css('font-family', fonts[randomH1Number]);
           $('h3').val(userTitle).css('font-family', fonts[randomH3Number]);
         }
-
+        if ($('#canvasSize').is(":checked")) {
+          var randomNumber = Math.floor(Math.random() * );
+          console.log(randomNumber);
+          $('#banner').css('width', widths[randomNumber] + "px");
+        }
       });
     });
   </script>
@@ -36,7 +41,6 @@
     #button {
       margin: auto;
       height: 150px;
-      width: 150px;
       padding: 30px;
     }
     
@@ -45,6 +49,7 @@
     }
     
     #banner {
+      height: 200px;
       border: 5px inset black;
     }
     
@@ -82,6 +87,8 @@
       <input type="text" id="bannerReceiver">
       <br> Randomize Fonts?
       <input type="checkbox" id="randomize">
+      <br> Randomize Banner Width Size?
+      <input type="checkbox" id="canvasSize">
     </form>
   </div>
   <div id="banner">
