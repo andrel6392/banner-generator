@@ -26,11 +26,11 @@
         if ($('#randomize').is(":checked")) {
           var randomH1Number = Math.floor(Math.random() * 16);
           var randomH3Number = Math.floor(Math.random() * 16);
-          $('h1').val(userTitle).css('font-family', fonts[randomH1Number]);
-          $('h3').val(userTitle).css('font-family', fonts[randomH3Number]);
+          $('h1').css('font-family', fonts[randomH1Number]);
+          $('h3').css('font-family', fonts[randomH3Number]);
         }
         if ($('#canvasSize').is(":checked")) {
-          var randomNumber = Math.floor(Math.random() * );
+          var randomNumber = Math.floor(Math.random() * 12);
           console.log(randomNumber);
           $('#banner').css('width', widths[randomNumber] + "px");
         }
