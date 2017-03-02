@@ -10,27 +10,30 @@
   <script>
     $(function() {
       var fonts = ["Aguafina Script", "Bad Script", "Clicker Script", "Dancing Script", "Euphoria Script", "Kaushan Script", "League Script", "Lily Script One", "Marck Script", "Meie Script", "Nova Script", "Oleo Script", "Oleo Script Swash Caps", "Petit Formal Script", "Pinyon Script", "Rouge Script", "Seaweed Script"];
-       var widths = [225, 250, 300, 325, 350, 375, 425, 500, 575, 525, 600, 675, 725];
+      var widths = [225, 250, 300, 325, 350, 375, 425, 500, 575, 525, 600, 675, 725];
       $("select").blur(function() {
         var userDecision = $('#decision').val();
         $("span").html(userDecision + "... ");
       });
       $("#button").click(function() {
-        var userColor = $('#colorWheel').val();
+        var fontColor = $('input[name=fontColor]:checked').val();
+        var userColor = $('#backgroundColor').val();
+        var textColor = $('#fontColor').val();
         var userTitle = $('#bannerCertificate').val();
         var userReceiver = $('#bannerReceiver').val();
         var userDecision = $('#decision').val();
         $('#banner').val(userColor).css('background-color', userColor);
         $('h1').val(userTitle).html(userDecision + userTitle)
         $('h3').val(userReceiver).html("To " + userReceiver);
+        $('h1, h3').css('color', fontColor)
         if ($('#randomize').is(":checked")) {
-          var randomH1Number = Math.floor(Math.random() * 16);
-          var randomH3Number = Math.floor(Math.random() * 16);
+          var randomH1Number = Math.floor(Math.random() * fonts.length);
+          var randomH3Number = Math.floor(Math.random() * fonts.length);
           $('h1').css('font-family', fonts[randomH1Number]);
           $('h3').css('font-family', fonts[randomH3Number]);
         }
         if ($('#canvasSize').is(":checked")) {
-          var randomNumber = Math.floor(Math.random() * 12);
+          var randomNumber = Math.floor(Math.random() * widths.length);
           console.log(randomNumber);
           $('#banner').css('width', widths[randomNumber] + "px");
         }
@@ -73,7 +76,10 @@
   <div id="form">
     <form>
       What color would you like the background to be?
-      <input type="color" id="colorWheel">
+      <input type="color" id="backgroundColor">
+      <br>What color would you like the text to be?<br>
+      <input type="radio" name="fontColor" value="black"> Black<br>
+      <input type="radio" name="fontColor" value="white"> White
       <br> Which text do you want?
       <select name="decision" id="decision">
       <option value="Certificate for "> Certificate for...</option>
